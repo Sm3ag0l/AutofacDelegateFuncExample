@@ -10,6 +10,12 @@ namespace AutofacDelegateFuncExample
     {
         static void Main(string[] args)
         {
+            var container = Demo.ContainerConfig.Config();
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var ApplicationStart = scope.ResolveComponent<
+            }
         }
     }
 }
