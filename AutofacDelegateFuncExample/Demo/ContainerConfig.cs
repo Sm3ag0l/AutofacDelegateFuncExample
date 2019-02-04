@@ -13,6 +13,7 @@ namespace AutofacDelegateFuncExample.Demo
     public static class ContainerConfig
     {
         public static IContainer container;
+
         public static IContainer Config()
         {
             ContainerBuilder builder = new ContainerBuilder();
@@ -34,7 +35,6 @@ namespace AutofacDelegateFuncExample.Demo
                 IComponentContext cc = context.Resolve<IComponentContext>();
 
                 return cc.ResolveNamed<Owned<IDisposableDependency>>;
-
             }).Named<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
 
             container = builder.Build();
