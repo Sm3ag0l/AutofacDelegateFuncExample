@@ -19,15 +19,18 @@ namespace AutofacDelegateFuncExample
             Console.ReadKey();
         }
 
-        public ApplicationStart()
-        {         
-        }
+        // ToDo finish and test this Construktor
+        //public ApplicationStart(Func<string, IDependency> func)
+        //{               
+        //    
+        //}
 
         /// <summary>
         /// 
         /// </summary>
-        public static void OrdinaryWork()
+        public void OrdinaryWork()
         {
+            // ToDo Try to get this from Construktor with dependency injection
             Func<String, IDependency> factory = Autofac.ContainerConfig.container.Resolve<Func<String, IDependency>>();
 
             IDependency biscuits = factory("biscuits");
@@ -40,8 +43,9 @@ namespace AutofacDelegateFuncExample
         /// <summary>
         /// 
         /// </summary>
-        public static void DisposableWork()
+        public void DisposableWork()
         {
+            // ToDo Try to get this from Construktor with dependency injection
             Func<String, Owned<IDisposableDependency>> factory = Autofac.ContainerConfig.container.ResolveNamed<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
 
             using (Owned<IDisposableDependency> item = factory("owned"))
