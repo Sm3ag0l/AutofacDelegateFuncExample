@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutofacDelegateFuncExample.Demo
+namespace AutofacDelegateFuncExample.Autofac
 {
     public static class ContainerConfig
     {
@@ -16,6 +16,9 @@ namespace AutofacDelegateFuncExample.Demo
         public static IContainer Config()
         {
             ContainerBuilder builder = new ContainerBuilder();
+
+            builder.RegisterType<ApplicationStart>().As<IApplicationStart>();
+
             builder.RegisterType<Biscuit>().As<IDependency>().Named<IDependency>("biscuits");
             builder.RegisterType<Beans>().As<IDependency>().Named<IDependency>("beans");
             builder.RegisterType<Worker>().As<IDisposableDependency>().Named<IDisposableDependency>("owned");
@@ -41,31 +44,6 @@ namespace AutofacDelegateFuncExample.Demo
             return container;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void OrdinaryWork()
-        {
-            Func<String, IDependency> factory = container.Resolve<Func<String, IDependency>>();
 
-            IDependency biscuits = factory("biscuits");
-            Console.Error.WriteLine(biscuits.Message());
-
-            IDependency beans = factory("beans");
-            Console.Error.WriteLine(beans.Message());
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void DisposableWork()
-        {
-            Func<String, Owned<IDisposableDependency>> factory = container.ResolveNamed<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
-
-            using (Owned<IDisposableDependency> item = factory("owned"))
-            {
-                Console.Error.WriteLine(item.Value.Message());
-            }
-        }
     }
 }

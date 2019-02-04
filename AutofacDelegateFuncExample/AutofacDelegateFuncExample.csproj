@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationStart.cs" />
-    <Compile Include="DelegateFactory\Beans.cs" />
-    <Compile Include="Demo\Demo.cs" />
-    <Compile Include="IApplicationStart.cs" />
-    <Compile Include="Interfaces\IDependency.cs" />
+    <Compile Include="ApplicationStart\ApplicationStart.cs" />
+    <Compile Include="DelegateFactory\Factory.cs" />
+    <Compile Include="Autofac\Container.cs" />
+    <Compile Include="ApplicationStart\IApplicationStart.cs" />
+    <Compile Include="DelegateFactory\IDependency.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

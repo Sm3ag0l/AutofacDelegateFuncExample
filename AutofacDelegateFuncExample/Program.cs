@@ -11,7 +11,7 @@ namespace AutofacDelegateFuncExample
     {
         static void Main(string[] args)
         {
-            var container = Demo.ContainerConfig.Config();
+            var container = Autofac.ContainerConfig.Config();
 
             using (var scope = container.BeginLifetimeScope())
             {
