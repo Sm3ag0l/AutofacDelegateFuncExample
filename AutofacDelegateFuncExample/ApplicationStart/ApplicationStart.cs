@@ -12,6 +12,7 @@ namespace AutofacDelegateFuncExample
     public class ApplicationStart : IApplicationStart
     {
         IDependency _beans;
+        Func<string, IDependency> factory;
 
         public void Run()
         {
@@ -20,24 +21,26 @@ namespace AutofacDelegateFuncExample
         }
 
         // ToDo finish and test this Construktor
-        //public ApplicationStart(Func<string, IDependency> func)
-        //{               
-        //    
-        //}
+        public ApplicationStart(Func<string, IDependency> func)
+        {
+            factory = func;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         public void OrdinaryWork()
         {
-            // ToDo Try to get this from Construktor with dependency injection
-            Func<String, IDependency> factory = Autofac.ContainerConfig.container.Resolve<Func<String, IDependency>>();
+            //Code bevore Constructor Injection
+            //Func<String, IDependency> factory = Autofac.ContainerConfig.container.Resolve<Func<String, IDependency>>();
 
             IDependency biscuits = factory("biscuits");
             Console.Error.WriteLine(biscuits.Message());
 
             IDependency beans = factory("beans");
             Console.Error.WriteLine(beans.Message());
+
+            Console.Error.WriteLine(biscuits.Message());
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace AutofacDelegateFuncExample
         /// </summary>
         public void DisposableWork()
         {
-            // ToDo Try to get this from Construktor with dependency injection
+            // Code bevore Constructor Injection
             Func<String, Owned<IDisposableDependency>> factory = Autofac.ContainerConfig.container.ResolveNamed<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
 
             using (Owned<IDisposableDependency> item = factory("owned"))
