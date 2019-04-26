@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace AutofacDelegateFuncExample.Demo
 {
-    public class Application
+    public static class ContainerConfig
     {
-        private readonly IContainer container;
+        public static IContainer container;
 
-        public Application()
+        public static IContainer Config()
         {
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<Biscuit>().As<IDependency>().Named<IDependency>("biscuits");
@@ -38,12 +38,13 @@ namespace AutofacDelegateFuncExample.Demo
             }).Named<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
 
             container = builder.Build();
+            return container;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void OrdinaryWork()
+        public static void OrdinaryWork()
         {
             Func<String, IDependency> factory = container.Resolve<Func<String, IDependency>>();
 
@@ -57,7 +58,7 @@ namespace AutofacDelegateFuncExample.Demo
         /// <summary>
         /// 
         /// </summary>
-        public void DisposableWork()
+        public static void DisposableWork()
         {
             Func<String, Owned<IDisposableDependency>> factory = container.ResolveNamed<Func<String, Owned<IDisposableDependency>>>("disposable-factory");
 

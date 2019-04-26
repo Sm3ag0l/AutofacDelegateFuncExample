@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>AutofacDelegateFuncExample</RootNamespace>
     <AssemblyName>AutofacDelegateFuncExample</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DelegateFactory\Beans.cs" />
-    <Compile Include="Demo\Demo.cs" />
-    <Compile Include="Interfaces\IDependency.cs" />
+    <Compile Include="ApplicationStart\ApplicationStart.cs" />
+    <Compile Include="DelegateFactory\Factory.cs" />
+    <Compile Include="Autofac\Container.cs" />
+    <Compile Include="ApplicationStart\IApplicationStart.cs" />
+    <Compile Include="DelegateFactory\IDependency.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
